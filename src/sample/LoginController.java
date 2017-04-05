@@ -75,7 +75,7 @@ public class LoginController {
 
     /**
      * Logs in a guest with limited accessibility to the rest of the application.
-     * @param event Triggers when the "Log in as Guest" button is pressed. 
+     * @param event Triggers when the "Log in as Guest" button is pressed.
      */
     public void guestLogin(ActionEvent event){
            aUtil.setUser_id("guest");
