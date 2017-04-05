@@ -35,6 +35,9 @@ public class LoginController {
     private Connection conn = connect();
 
     @FXML
+    /**
+     * Initializes the Login screen.
+     */
     public void initialize(){
         usernameField.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -46,6 +49,12 @@ public class LoginController {
         });
     }
 
+    /**
+     * Logs in a user by checking the username and password, both of which are of type Text.
+     * If the username specified is not in the database, the screen displays an error message
+     * indicating that the username does not exist and will not log the user in.
+     * @param event Function is run when the user clicks the Login button in the User Interface.
+     */
     public void login(ActionEvent event){
         username = usernameField.getText();
         password = passwordField.getText();
@@ -64,11 +73,20 @@ public class LoginController {
         }
     }
 
+    /**
+     * Logs in a guest with limited accessibility to the rest of the application.
+     * @param event Triggers when the "Log in as Guest" button is pressed. 
+     */
     public void guestLogin(ActionEvent event){
            aUtil.setUser_id("guest");
            screenUtil.pullUpScreen("MainMenu.fxml", "Main Menu", event);
     }
 
+    /**
+     * Opens the Create Account screen when the "Create Account" button is pressed
+     * in the user interface.
+     * @param event ActionEvent object representing the button click.
+     */
     public void openCreateAccount(ActionEvent event){
 
         screenUtil.pullUpScreen("NewAccount.fxml", "New Account", event);
@@ -79,7 +97,12 @@ public class LoginController {
         aUtil.clearData();
     }
 
-
+    /**
+     * Checks if the database contains a user.
+     * @param conn Connection representing the connection to the database.
+     * @return Returns a boolean that is "true" if the database contains the user, and "false" otherwise.
+     * @throws SQLException
+     */
 
     private boolean databaseContainsUser(Connection conn) throws SQLException {
         boolean contains = false;
@@ -100,7 +123,10 @@ public class LoginController {
         return contains;
     }
 
-
+    /**
+     * Function for connecting to the database.
+     * @return Returns a Connection object.
+     */
 
     public static Connection connect(){
         try {
