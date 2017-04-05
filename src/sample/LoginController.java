@@ -16,7 +16,7 @@ import java.sql.*;
 import java.util.Scanner;
 
 /**
- * Created by Adonay on 3/26/2017.
+ * Controller for Login screen.
  */
 public class LoginController {
     @FXML
