@@ -13,6 +13,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Controller for Application Review Screen.
+ */
+
 public class ApplicationReviewController {
     @FXML
     Button approve;
@@ -55,7 +59,7 @@ public class ApplicationReviewController {
     /**
      * Sets an Application status to "APPROVED" and adds comments to the Application.
      */
-    void setApprove() throws SQLException{
+    public void setApprove() throws SQLException{
         Statement stm;
         stm = conn.createStatement();
         //get comments
@@ -74,7 +78,7 @@ public class ApplicationReviewController {
     /**
      * Sets an Application status to "REJECTED" and adds comments to the Application.
      */
-    void setReject() throws SQLException{
+    public void setReject() throws SQLException{
         Statement stm;
         stm = conn.createStatement();
         //get comments
@@ -94,7 +98,7 @@ public class ApplicationReviewController {
      * @throws ClassNotFoundException
      * @throws SQLException
      */
-    private static ArrayList<String> getUnassigForms() throws ClassNotFoundException, SQLException {
+    public static ArrayList<String> getUnassigForms() throws ClassNotFoundException, SQLException {
         Connection conn = connect();
         Statement stm;
         stm = conn.createStatement();
@@ -120,7 +124,7 @@ public class ApplicationReviewController {
      * @throws ClassNotFoundException
      * @throws SQLException
      */
-    Account getSmallWorker() throws ClassNotFoundException, SQLException{//TODO: find out fields + name for govt. worker
+    public Account getSmallWorker() throws ClassNotFoundException, SQLException{//TODO: find out fields + name for govt. worker
         Statement stm;
         stm = conn.createStatement();
         String sql = "SELECT AID.MIN(CNT(FID)) FROM REVIEWS";
@@ -135,7 +139,7 @@ public class ApplicationReviewController {
      * @param input The Array of Strings to be converted to an ArrayList.
      * @return Returns an ArrayList of Strings.
      */
-    ArrayList<String> ArrayToArrayList(String[] input){
+    public ArrayList<String> ArrayToArrayList(String[] input){
         ArrayList<String> returnThing = new ArrayList<String>();
         for(int i=0; i<input.length; i++){
             returnThing.add(input[i]);
@@ -152,7 +156,7 @@ public class ApplicationReviewController {
      * @throws ClassNotFoundException
      * @throws SQLException
      */
-    void addToInbox(Account w, String apptoassgn) throws ClassNotFoundException, SQLException{
+    public void addToInbox(Account w, String apptoassgn) throws ClassNotFoundException, SQLException{
         Statement stm;
         stm = conn.createStatement();
         //update alcohol status
@@ -169,8 +173,7 @@ public class ApplicationReviewController {
      * @throws ClassNotFoundException
      * @throws SQLException
      */
-    //adds all the unassigned forms to workers inboxes
-    void addAllUnassigned() throws ClassNotFoundException, SQLException{
+    public void addAllUnassigned() throws ClassNotFoundException, SQLException{
         ArrayList<String> unassigForms = getUnassigForms();
         for (int i = 0; i < unassigForms.size(); i++) {
             addToInbox(getSmallWorker(), unassigForms.get(i));
